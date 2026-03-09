@@ -305,14 +305,25 @@ The following enhancements are planned for future releases:
 - [ ] **Multi-tenant support** — serve all portfolio games from a single management interface
 - [ ] **Offline resilience** — service worker caching for critical data and graceful offline fallback
 
+### API Backend Integration
+
+- [ ] **Connect to [🎨 Themes API](https://github.com/scottdreinhart/themes-api)** — wire up all client-side operations to the dedicated Fastify API backend. All data mutations (create, update, delete) and queries will flow through the API rather than local mocks or direct storage.
+- [ ] **Authentication handshake** — implement JWT-based auth flow between this admin app and the API backend, including token refresh, session expiry, and role-based route guards.
+- [ ] **Real-time sync** — subscribe to WebSocket events from the API for live dashboard updates (new transactions, status changes, alerts) without polling.
+- [ ] **Error handling & retry** — centralized API client with exponential backoff, circuit breaker pattern, and user-friendly error surfaces for network failures.
+
 ## Portfolio Services
 
-This service is part of the game portfolio infrastructure:
+Infrastructure services and API backends supporting the game portfolio:
 
-| Service | Description |
-| ------- | ----------- |
-| **[💳 Game Billing](https://github.com/scottdreinhart/game-billing)** | Centralized payment processing and subscription management for the game portfolio |
-| **[📺 Ad Network](https://github.com/scottdreinhart/ad-network)** | Unified ad serving and revenue management across the game portfolio |
+| Service | Type | Description |
+| ------- | ---- | ----------- |
+| **[💳 Game Billing](https://github.com/scottdreinhart/game-billing)** | Admin App | Payment processing & subscription management |
+| **[📺 Ad Network](https://github.com/scottdreinhart/ad-network)** | Admin App | Ad serving & revenue management |
+| **[💳 Billing API](https://github.com/scottdreinhart/billing-api)** | Fastify API | Payment & subscription API backend |
+| **[🎨 Themes API](https://github.com/scottdreinhart/themes-api)** | Fastify API | Theme catalog & DLC distribution API backend |
+| **[📺 Ads API](https://github.com/scottdreinhart/ads-api)** | Fastify API | Ad serving & impression tracking API backend |
+| **[🏆 Rankings API](https://github.com/scottdreinhart/rankings-api)** | Fastify API | King of the Hill multiplayer ranking & leaderboard API backend |
 
 ## Portfolio Games
 
