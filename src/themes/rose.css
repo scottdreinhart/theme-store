@@ -1,0 +1,6 @@
+/* Rose theme */
+[data-theme='rose'] {
+  --bg: #1a0a14;
+  --fg: #e8c5d4;
+  --accent: #f43f5e;
+}
