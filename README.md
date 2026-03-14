@@ -141,70 +141,16 @@ pnpm build:preview
 ```bash
 # Individual tools
 pnpm lint           # ESLint — check for issues
-pnpm lint:fix       # ESLint — auto-fix issues
-pnpm format         # Prettier — format all source files
+pnpm eslint:fix     # ESLint — auto-fix issues
+pnpm prettier:fix   # Prettier — format all source files
 pnpm format:check   # Prettier — check formatting without writing
 pnpm typecheck      # TypeScript type check (tsc --noEmit)
 
 # Chains
 pnpm check          # lint + format:check + typecheck in one pass (quality gate)
-pnpm fix            # lint:fix + format in one pass (auto-fix everything)
+pnpm fix            # eslint:fix + prettier:fix in one pass (auto-fix everything)
 pnpm validate       # check + build — full pre-push validation
 ```
-
-### Cleanup & Maintenance
-
-```bash
-# Clean
-pnpm clean          # wipe dist/ and release/ build outputs
-pnpm clean:node     # delete node_modules only
-pnpm clean:all      # nuclear — dist/ + release/ + node_modules/
-
-# Fresh start
-pnpm reinstall      # clean:all + pnpm install
-```
-
-### Electron Desktop App
-
-```bash
-# Development: launches Vite + Electron together
-pnpm electron:dev
-
-# Preview production build in Electron (build + launch)
-pnpm electron:preview
-
-# Production build: creates distributable for current platform in release/
-pnpm electron:build
-
-# Platform-specific builds
-pnpm electron:build:win     # Windows .exe
-pnpm electron:build:linux   # Linux .AppImage
-pnpm electron:build:mac     # macOS .dmg
-```
-
-Electron wraps the same web app in a native desktop window. In dev mode it connects to the Vite dev server (`localhost:5173`); in production it loads the built `dist/` files directly.
-
-### Capacitor Mobile App
-
-```bash
-# Initialize native platforms (one-time setup)
-pnpm cap:init:android       # Add Android project
-pnpm cap:init:ios            # Add iOS project
-
-# Build web app + sync to native projects
-pnpm cap:sync
-
-# Open native IDE
-pnpm cap:open:android        # Open in Android Studio
-pnpm cap:open:ios            # Open in Xcode
-
-# Run on connected device/emulator
-pnpm cap:run:android         # Deploy to Android device
-pnpm cap:run:ios             # Deploy to iOS device
-```
-
-Capacitor wraps the same Vite `dist/` output in native Android and iOS app shells. The web code runs in a native WebView — no code changes needed.
-
 ## Tech Stack
 
 | Technology | Version | Purpose |
@@ -298,18 +244,21 @@ This project enforces nine complementary design principles:
 - [ ] **Theme system** — multiple color themes with light/dark/system mode + colorblind presets
 - [ ] **Sound effects** — Web Audio API synthesized SFX for interactions
 
-### Code Quality & Testing
+### Code Quality
 
-- [ ] **Unit tests** — domain functions are pure and test-ready; add Vitest or Jest suite
-- [ ] **Component tests** — React Testing Library tests for UI components
-- [ ] **Integration / E2E tests** — Playwright or Cypress for full flow verification
+```bash
+# Individual tools
+pnpm lint           # ESLint — check for issues
+pnpm eslint:fix     # ESLint — auto-fix issues
+pnpm prettier:fix   # Prettier — format all source files
+pnpm format:check   # Prettier — check formatting without writing
+pnpm typecheck      # TypeScript type check (tsc --noEmit)
 
-### DevOps & Deployment
-
-- [ ] **CI/CD pipeline** — GitHub Actions workflow for lint → test → build → deploy
-- [ ] **GitHub Pages / Vercel deploy** — auto-deploy `dist/` on push to `main`
-- [ ] **Custom app icons** — generate PNG icons from SVG for Electron builds and mobile
-
+# Chains
+pnpm check          # lint + format:check + typecheck in one pass (quality gate)
+pnpm fix            # eslint:fix + prettier:fix in one pass (auto-fix everything)
+pnpm validate       # check + build — full pre-push validation
+```
 ## Future Improvements
 
 The following enhancements are planned for future releases:
